@@ -126,19 +126,19 @@ For example:
         exclude:
           - testgru-*
     ```
-- `on.pullRequest.include`: Pull Request events with the specified conditions will trigger the agent. Conditions include the target branch name and the title of the pull request. For example:
+- `on.pullRequest.include`: Pull Request events with the specified conditions will trigger the agent. Conditions include the source branch name and the title of the pull request. For example:
     ```yaml
     on:
       pullRequest:
         include:
           branch:
-            - "main"
+            - "**"
           title:
             - "feature/*"
     ```
-    The above configuration will trigger the agent when the target branch is `main` AND the title of the pull request matches `feature/*`.
+    The above configuration will trigger the agent when the source branch matches `**` AND the title of the pull request matches `feature/*`.
     If not specified, the agent will be triggered by all pull request events. 
-- `on.pullRequest.exclude`: Pull Request events with the specified conditions will NOT trigger the agent. Conditions include the target branch name and the title of the pull request. For example:
+- `on.pullRequest.exclude`: Pull Request events with the specified conditions will NOT trigger the agent. Conditions include the source branch name and the title of the pull request. For example:
     ```yaml
     on:
       pullRequest:
@@ -148,7 +148,7 @@ For example:
           title:
             - "WIP*"
     ```
-    The above configuration will NOT trigger the agent when the target branch matches `testgru-*` OR the title of the pull request matches `WIP*`. If not specified, the agent will be triggered by all pull request events specified in `on.pullRequest.include`.
+    The above configuration will NOT trigger the agent when the source branch matches `testgru-*` OR the title of the pull request matches `WIP*`. If not specified, the agent will be triggered by all pull request events specified in `on.pullRequest.include`.
 - `settings.workingDir`: The working directory of the agent. This is useful when you want to run the tests in a specific directory such as monorepo. If not specified, the agent will use the root directory of the repository.
 - `settings.mockIgnore`: The packages that should NOT be mocked. For example:
     ```yaml
