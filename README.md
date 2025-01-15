@@ -52,6 +52,11 @@ settings:
   language: typescript
   framework: vitest
 ```
+#### Prebuilt Parameters
+The following parameters are prebuilt by Gru and can be used in the configuration.
+- `{{sourceFilePath}}`: The path of the source code file, e.g. `src/utils/format.ts`.
+- `{{sourceFileName}}`: The name of the source code file, e.g. `format`.
+- `{{testFilePath}}`: The path of the test code file, e.g. `test/utils/format.test.ts`.
 
 #### Basic Configuration Fields
 The following fields are the MUST have in any configuration.
@@ -162,6 +167,13 @@ For example:
         - bytes
     ```
     Test Gru will try best to NOT mock above packages when generating unit tests.
+- `settings.pullRequest.titleFormat`: The format of the title of the pull request. 
+    ```yaml
+    settings:
+      pullRequest:
+        titleFormat: "test: add unit test for {{sourceFilePath}}"
+    ```
+    The above configuration will generate a title like `test: add unit test for src/utils/test.ts`.
 
 ### Dry Run
 It is highly recommended to do a dry run before you save the configuration file. You can do this by clicking the `Dry Run` button in the configuration editor. Make sure the dry run is successful before you save the configuration. However, if you do believe the configuration is correct, you can save it without a successful dry run.
