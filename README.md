@@ -64,16 +64,16 @@ The following fields are the MUST have in any configuration.
 For example:
     ```yaml
     global:
-    setup:
-      - npm install
-      - npm run build
+      setup:
+        - npm install
+        - npm run build
     ```
     ```yaml
     global:
-    setup:
-      - |
-        npm install
-        npm run build
+      setup:
+        - |
+          npm install
+          npm run build
     ```
     Please note that the above two configurations are not equivalent. The first one will run `npm install` and `npm run build` in two separate sessions. The second one will run `npm install && npm run build` in one session.
 - `pipeline.runTest.exec`: The commands to run the tests. Similar to `global.setup`, you can put multiple commands in one item or separate items. In most cases, you should put the commands in one item.
