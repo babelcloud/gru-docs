@@ -142,7 +142,9 @@ For example:
             - "feature/*"
     ```
     The above configuration will trigger the agent when the source branch matches `**` AND the title of the pull request matches `feature/*`.
-    If not specified, the agent will be triggered by all pull request events. 
+    Note: 
+    1. If no `on.push` or `on.pullRequest` is specified, the default behavior is to trigger the agent by all pull request events.
+    2. If any `on.push` or `on.pullRequest` is specified, the agent will be triggered by according to the specified conditions.
 - `on.pullRequest.exclude`: Pull Request events with the specified conditions will NOT trigger the agent. Conditions include the source branch name and the title of the pull request. For example:
     ```yaml
     on:
