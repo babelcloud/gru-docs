@@ -176,7 +176,18 @@ For example:
         titleFormat: "test: add unit test for {{sourceFilePath}}"
     ```
     The above configuration will generate a title like `test: add unit test for src/utils/test.ts`.
-
+- `settings.pullRequest.targetBranch.updated`: What to do when the branch that triggered the agent is updated.
+    ```yaml
+    settings:
+      pullRequest:
+        targetBranch:
+          updated: rebase 
+    ```
+    The available options are `rebase`, `redo`, `skip`. This option is only effective when the agent is triggered by a pull request.
+    - `rebase`: Rebase the branch on to the target branch.
+    - `redo`: Regenerate the pull request based on the updated branch.
+    - `skip`: Do nothing. This is the default behavior.
+    
 ### Dry Run
 It is highly recommended to do a dry run before you save the configuration file. You can do this by clicking the `Dry Run` button in the configuration editor. Make sure the dry run is successful before you save the configuration. However, if you do believe the configuration is correct, you can save it without a successful dry run.
 
