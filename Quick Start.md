@@ -1,9 +1,14 @@
 Test gru is still in testing phase.
 If you have any question, please connect to us:
-connect@gru.ai,or join our [discord](https://discord.gg/jGNWxZbCXs).  
+connect@gru.ai,or join our [slack](https://forms.office.com/pages/responsepage.aspx?id=pv-U4cZeVEmv6PWOhkVcioQxW7gnJCNAlyoGvQ7Z9OJUMENBQzZJTU5JSlIyMUxYQk1DOVhaNDVXSi4u&route=shorturl).  
 
 Currently, Test Gru only supports Node.js/TypeStript. We are gradually adding support for other languages.
-We have prepared an [open-source project](https://github.com/gru-agent/testgru-example) as an example to help you [quickly start](#Quick Start with Example Repository).
+Here are the examples to help you [quickly start](#Quick Start with Example Repository):
+[TypeScript Example](https://github.com/gru-agent/testgru-example-ts)
+[Python Example](https://github.com/gru-agent/testgru-example-py)
+[Java Example](https://github.com/gru-agent/testgru-example-java)
+[Go](https://github.com/gru-agent/testgru-example-go)
+
 
 # Creat Test Gru Account
 Log in at [Gru.ai](https://gru.ai). Test Gru currently only supports use with GitHub accounts. You need a GitHub account to log in to gru.ai.
@@ -26,9 +31,13 @@ Then select a repo, perform the configuration.
 ![image](https://github.com/user-attachments/assets/3a9688d8-f513-4612-8546-28101669387d)
 
 # Use Example For Quick Start
-1. Fork [this repo](https://github.com/gru-agent/testgru-example) 
-2. Install App and get configuration from code repo
-![image](https://github.com/user-attachments/assets/ab49cc2f-c146-42f9-a056-60519aac2fbc)
+1. Fork this repo:
+[TypeScript Example](https://github.com/gru-agent/testgru-example-ts)
+[Python Example](https://github.com/gru-agent/testgru-example-py)
+[Java Example](https://github.com/gru-agent/testgru-example-java)
+[Go](https://github.com/gru-agent/testgru-example-go)
+2. choose language and framework to gennerate 
+![image](https://github.com/user-attachments/assets/c5a2d478-8bc7-4fe2-bc3c-a9e56f95190a)
 3. dispatch src/user.ts
 ![image](https://github.com/user-attachments/assets/8daf5a66-b4db-4d3c-b613-2f1f823e0397)
 4. Test Gru submits a PR
