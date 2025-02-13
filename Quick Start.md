@@ -3,11 +3,15 @@ If you have any question, please connect to us:
 connect@gru.ai,or join our [slack](https://forms.office.com/pages/responsepage.aspx?id=pv-U4cZeVEmv6PWOhkVcioQxW7gnJCNAlyoGvQ7Z9OJUMENBQzZJTU5JSlIyMUxYQk1DOVhaNDVXSi4u&route=shorturl).  
 
 Currently, Test Gru only supports Node.js/TypeStript. We are gradually adding support for other languages.
-Here are the examples to help you [quickly start](#Quick Start with Example Repository):
-[TypeScript Example](https://github.com/gru-agent/testgru-example-ts)
-[Python Example](https://github.com/gru-agent/testgru-example-py)
-[Java Example](https://github.com/gru-agent/testgru-example-java)
-[Go](https://github.com/gru-agent/testgru-example-go)
+Here are the examples to help you quickly start:
+
+[TypeScript Sample](https://github.com/gru-agent/testgru-example-ts)
+
+[Python Sample](https://github.com/gru-agent/testgru-example-py)
+
+[Java Sample](https://github.com/gru-agent/testgru-example-java)
+
+[Go Sample](https://github.com/gru-agent/testgru-example-go)
 
 
 # Creat Test Gru Account
