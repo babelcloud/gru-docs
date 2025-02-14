@@ -176,6 +176,13 @@ For example:
         titleFormat: "test: add unit test for {{sourceFilePath}}"
     ```
     The above configuration will generate a title like `test: add unit test for src/utils/test.ts`.
+- `settings.pullRequest.branchFormat`: The format of the branch name of the pull request. 
+    ```yaml
+    settings:
+      pullRequest:
+        branchFormat: "gru/{{sourceFilePath}}-{{timestamp}}"
+    ```
+    The above configuration will generate a branch name like `gru/src-utils-test-ts-1739530013160`.
 - `settings.pullRequest.targetBranch.updated`: What to do when the branch that triggered the agent is updated.
     ```yaml
     settings:
