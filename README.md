@@ -191,6 +191,47 @@ For example:
 ### Dry Run
 It is highly recommended to do a dry run before you save the configuration file. You can do this by clicking the `Dry Run` button in the configuration editor. Make sure the dry run is successful before you save the configuration. However, if you do believe the configuration is correct, you can save it without a successful dry run.
 
+### Multiple Configurations
+You can have multiple configurations in one repository. For example, you can have a configuration for submodule A and another configuration for submodule B. The configurations will take effect at the same time. For example:
+
+```yaml
+version: "0.1"
+global:
+  setup: []
+pipeline:
+  runTest:
+    exec:
+      - go test {{testCodeIdentifier}} -v
+settings:
+  include:
+    - pkg/**
+  exportFunctionOrClass: not-allow
+  testPlacementStrategies:
+    - type: co-located
+      testFilePattern: "{{sourceFileName}}_test.go"
+  language: go
+  framework: gotest
+---
+version: "0.1"
+global:
+  setup: []
+pipeline:
+  runTest:
+    exec:
+      - go test {{testCodeIdentifier}} -v
+settings:
+  include:
+    - service/pkg/**
+  exportFunctionOrClass: not-allow
+  testPlacementStrategies:
+    - type: co-located
+      testFilePattern: "{{sourceFileName}}_test.go"
+  workingDir: service
+  language: go
+  framework: gotest
+```
+Use `---` to separate different configurations.
+
 ## 4. Usage
 The usage of the agent is self-explanatory. Treat gru as a remote work colleague and collaborate with you only through Github.
 
