@@ -194,6 +194,19 @@ For example:
     - `rebase`: Rebase the branch on to the target branch.
     - `redo`: Regenerate the pull request based on the updated branch.
     - `skip`: Do nothing. This is the default behavior.
+- `settings.exampleRef`: It is recommended to provide an example reference for the agent to generate unit tests. For example:
+    ```yaml
+    settings:
+      exampleRef:
+        - match: "src/store/**/*.ts"
+          examples:
+            - src/store/chat/slices/aiChat/actions/__tests__/generateAIChat.test.ts
+            - src/store/global/action.test.ts
+        - match: "src/services/message/**/*.ts" 
+          examples:
+            - src/services/message/client.test.ts
+    ```
+    You can specify multiple `match` and `examples` to provide references for different parts of the codebase.
     
 ### Dry Run
 It is highly recommended to do a dry run before you save the configuration file. You can do this by clicking the `Dry Run` button in the configuration editor. Make sure the dry run is successful before you save the configuration. However, if you do believe the configuration is correct, you can save it without a successful dry run.
