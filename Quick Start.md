@@ -1,4 +1,5 @@
 Test gru is still in testing phase.
+# Gru Quick Start
 If you have any question, please connect to us:
 connect@gru.ai,or join our [slack](https://forms.office.com/pages/responsepage.aspx?id=pv-U4cZeVEmv6PWOhkVcioQxW7gnJCNAlyoGvQ7Z9OJUMENBQzZJTU5JSlIyMUxYQk1DOVhaNDVXSi4u&route=shorturl).  
 
@@ -14,18 +15,18 @@ Here are the examples to help you quickly start:
 [Go Sample](https://github.com/gru-agent/testgru-example-go)
 
 
-# Creat Test Gru Account
+### Creat Test Gru Account
 Log in at [Gru.ai](https://gru.ai). Test Gru currently only supports use with GitHub accounts. You need a GitHub account to log in to gru.ai.
 
 ![image](https://github.com/user-attachments/assets/79d337d2-21e4-4067-b1fd-a0eb48709976)
 
 ![image](https://github.com/user-attachments/assets/47d87154-5fa6-4de0-b56a-f7ee1f56e651)
-# Enter Test Gru
+### Enter Test Gru
 Click the top left corner to select [Test Gru](https://gru.ai/:test).
 
 ![image](https://github.com/user-attachments/assets/b86cc641-de39-4993-a302-60daad6ccca3)
 
-# Install Github Application
+### Install Github Application
 Follow the steps to install Test Gru.
 
 ![image](https://github.com/user-attachments/assets/f1137208-b617-400d-92cb-1c5406d561f1)
