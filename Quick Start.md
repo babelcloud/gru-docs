@@ -25,29 +25,46 @@ Log in at [Gru.ai](https://gru.ai). Test Gru currently only supports use with Gi
 ## Enter Test Gru
 Click the top left corner to select [Test Gru](https://gru.ai/:test).
 
-![image](https://github.com/user-attachments/assets/b86cc641-de39-4993-a302-60daad6ccca3)
+<img width="1311" alt="image" src="https://github.com/user-attachments/assets/554153d2-1516-41da-b089-31d7d4778604" />
+
 
 ## Install Github Application
 Follow the steps to install Test Gru.
 
-![image](https://github.com/user-attachments/assets/f1137208-b617-400d-92cb-1c5406d561f1)
-![image](https://github.com/user-attachments/assets/4842701d-a3b6-4193-89cf-201d0ed6b1d4)
+<img width="1315" alt="image" src="https://github.com/user-attachments/assets/fc3f97f4-8f45-4cdd-9cd7-fa06e41448a0" />
+<img width="1314" alt="image" src="https://github.com/user-attachments/assets/4ad8cd6b-bbc4-4387-bc15-91f3184f5028" />
+
+
 Then select a repo, perform the configuration.
-![image](https://github.com/user-attachments/assets/9849d812-57d3-48f3-86de-ee2427d88e49)
-![image](https://github.com/user-attachments/assets/3a9688d8-f513-4612-8546-28101669387d)
+<img width="1313" alt="image" src="https://github.com/user-attachments/assets/c4a35e2e-b0d1-4d2e-9e24-65386641ff67" />
+<img width="1314" alt="image" src="https://github.com/user-attachments/assets/68bfc952-8f55-48f1-a9bd-f83b108f7fad" />
+You can try using the default configuration. To ensure accuracy, you can click "Verify configuration" to test it.
+
 
 ## Use Example For Quick Start
 1. Fork this repo:
+
 [TypeScript Example](https://github.com/gru-agent/testgru-example-ts)
+
 [Python Example](https://github.com/gru-agent/testgru-example-py)
+
 [Java Example](https://github.com/gru-agent/testgru-example-java)
-[Go](https://github.com/gru-agent/testgru-example-go)
-2. choose language and framework to gennerate 
-![image](https://github.com/user-attachments/assets/c5a2d478-8bc7-4fe2-bc3c-a9e56f95190a)
+
+[Golang Example](https://github.com/gru-agent/testgru-example-go)
+
+2. Save the default configuration.
+
+<img width="1309" alt="image" src="https://github.com/user-attachments/assets/d7dabe25-a12c-42fa-8c3e-4cc96362bbbd" />
+
 3. dispatch src/user.ts
-![image](https://github.com/user-attachments/assets/8daf5a66-b4db-4d3c-b613-2f1f823e0397)
+
+<img width="1315" alt="image" src="https://github.com/user-attachments/assets/4941be30-7a39-43f8-9d5f-d53763373623" />
+
 4. Test Gru submits a PR
-![image](https://github.com/user-attachments/assets/bed72345-3730-4b44-985c-466111edde3b)
+<img width="1315" alt="image" src="https://github.com/user-attachments/assets/3779383a-70ca-4419-bac0-73b2b832d2de" />
+<img width="1314" alt="image" src="https://github.com/user-attachments/assets/6f06387c-6e34-4b46-af0b-d67adc7fe26e" />
+
+
 
 ## grutest.yaml 
 Configuration file example
@@ -79,24 +96,24 @@ settings:
   testPlacementStrategies:
     - type: co-located
       testFilePattern: "{{sourceFileName}}.spec.ts"
-```    
+```
+Learn more about configuratin: https://github.com/babelcloud/gru-docs/blob/main/README.md#3-configuration
 
 ## Trigger Test Gru to work
 
 ### Auto Rrigger by Pull Request
 When you complete the configuration, Test Gru will automatically take over your repository. Whenever you submit a PR, Test Gru will automatically detect software that requires unit tests and add tests for it.
 
-![image](https://github.com/user-attachments/assets/ed3bbd18-455f-40bc-99fd-ca3485665651)
+<img width="1290" alt="image" src="https://github.com/user-attachments/assets/2cdd8180-61dd-49cc-92a8-1a75613ddf64" />
+
 
 After Gru completes writing the test code, it will run the tests. Once it confirms there are no issues with the test code, it will submit a PR with the unit test code to the current PR.
 
-![image](https://github.com/user-attachments/assets/e7af14a3-c9b2-4fba-9bc6-2feb5eacecc6)
+
 
 ### Manual Trigger
 You can manually trigger Test Gru on the [Gru.ai](gru.ai/:test).
-![image](https://github.com/user-attachments/assets/87fa45b1-2d4b-4871-9dd7-0c257f794341)
+<img width="1315" alt="image" src="https://github.com/user-attachments/assets/4941be30-7a39-43f8-9d5f-d53763373623" />
 
 It can be triggered by PR or existing code files.
-![image](https://github.com/user-attachments/assets/10e5d5d9-b73b-4fba-a2e4-6e11e045a4ff)
 
-![image](https://github.com/user-attachments/assets/d327e627-d341-4ccf-af59-e47bf5195a98)
