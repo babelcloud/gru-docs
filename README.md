@@ -14,6 +14,7 @@ The following diagram shows the workflow of Test Gru:
 ## 2. Installation
 1. Login to [Gru.ai](https://gru.ai)
 2. Follow the instructions to install the agent in your repository.
+[Quick Start](https://github.com/babelcloud/gru-docs/blob/main/Quick%20Start.md)
 
 ## 3. Configuration
 For each of the repository, you MUST configure before you can use the agent. The configuration is for the following purposes:
