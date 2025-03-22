@@ -60,8 +60,8 @@ Test Gru currently supports the following languages and frameworks:
 
 | Language | Supported Frameworks |
 |----------|---------------------|
-| TypeScript | jasmine, jest, mocha, vitest |
-| JavaScript | jasmine, jest, mocha, vitest |
+| TypeScript | jest, vitest |
+| JavaScript | jest, vitest |
 | Python | pytest |
 | Java | junit4, junit5, testng |
 | Go | gotest |
@@ -75,7 +75,7 @@ The following parameters are prebuilt by Gru and can be used in the configuratio
 
 #### Basic Configuration Fields
 The following fields are the MUST have in any configuration.
-- `version`: The version of the configuration schema.
+- `version`: The version of the configuration schema. (1.0 by default)
 - `name`: (Optional) A descriptive name for your configuration.
 - `global.setup`: The commands to setup the environment for the repository. You can put multiple commands in one item or separate items.
 For example:
