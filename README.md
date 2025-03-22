@@ -23,7 +23,7 @@ For each of the repository, you MUST configure before you can use the agent. The
 3. Tell the agent the language and framework of the repository.
 4. Tell the agent the rules of the repository such as where to put the unit tests, what is the naming convention of the unit tests, etc...
 
-Use the [Test Gru Console](https://gru.ai/:test) to edit the configuration, currently, we only support one configuration per repository.
+Use the [Test Gru Console](https://gru.ai/:test) to edit the configuration.
 
 ### Schema
 The configuration yaml should follow the schema [Test Gru Configuration Schema](https://gru.ai/api/agent/public/test-gru/schema/public-schema).
@@ -32,6 +32,7 @@ Here is an basic example of the configuration:
 
 ```yaml
 version: "1.0"
+name: "My Test Configuration"
 global:
   setup:
     - npm install
@@ -53,6 +54,19 @@ settings:
   language: typescript
   framework: vitest
 ```
+
+#### Supported Languages and Frameworks
+Test Gru currently supports the following languages and frameworks:
+
+| Language | Supported Frameworks |
+|----------|---------------------|
+| TypeScript | jest, vitest |
+| JavaScript | jest, vitest |
+| Python | pytest |
+| Java | junit4, junit5, testng |
+| Go | gotest |
+| Rust | rusttest |
+
 #### Prebuilt Parameters
 The following parameters are prebuilt by Gru and can be used in the configuration.
 - `{{sourceFilePath}}`: The path of the source code file, e.g. `src/utils/format.ts`.
@@ -61,6 +75,8 @@ The following parameters are prebuilt by Gru and can be used in the configuratio
 
 #### Basic Configuration Fields
 The following fields are the MUST have in any configuration.
+- `version`: The version of the configuration schema. (1.0 by default)
+- `name`: (Optional) A descriptive name for your configuration.
 - `global.setup`: The commands to setup the environment for the repository. You can put multiple commands in one item or separate items.
 For example:
     ```yaml
@@ -78,10 +94,13 @@ For example:
     ```
     Please note that the above two configurations are not equivalent. The first one will run `npm install` and `npm run build` in two separate sessions. The second one will run `npm install && npm run build` in one session.
 - `pipeline.runTest.exec`: The commands to run the tests. Similar to `global.setup`, you can put multiple commands in one item or separate items. In most cases, you should put the commands in one item.
-- `settings.exportFunctionOrClass`: Whether to export functions or classes. Sometimes, the functions to be tested are not exported. You can set this to `allow` to allow the agent to export the functions.
+- `settings.exportFunctionOrClass`: Whether to export functions or classes. The available options are:
+  - `allow`: Allow the agent to export the functions without asking the user.
+  - `inquire`: Ask the user before exporting the functions.
+  - `not-allow`: Do not export the functions.
 - `settings.include`: The folders of source code to trigger the agent. You can specify multiple folders or use wildcard to match multiple folders. If not specified, the agent will NOT be triggered in any case.
 - `settings.exclude`: The change of folders/files of source code that should NOT trigger the agent. You can specify multiple folders or use wildcard to match multiple folders. This is useful when you want to exclude some files from being tested. If not specified, the agent will be triggered by any source code changes in the folders specified in `settings.include`. 
-- `settings.testPlacementStrategies`: The strategies to place the unit tests. There are three strategies you can choose from:
+- `settings.testPlacementStrategies`: The strategies to place the unit tests. There are four strategies you can choose from:
     - `co-located`: The unit tests are placed in the same folder as the source code. For example:
         ```yaml
         settings:
@@ -98,21 +117,27 @@ For example:
               testDir: tests
         ```
     - `regex`: Define your own rules to place the unit tests. For example:
-      ```yaml
-      testPlacementStrategies:
-        - type: regex
-          testFilePattern: "{{sourceFileName}}.test.ts"
-          testDirPattern: "/src(.*)/g"
-          testDirReplacement: "test/$1"
-      ```
-      The above configuration will place the unit tests in the `test` folder but keep the folder structure of the `src` folder.
-- `settings.language`: The language of the repository.
-- `settings.framework`: The framework of the repository.
+        ```yaml
+        testPlacementStrategies:
+          - type: regex
+            testFilePattern: "{{sourceFileName}}.test.ts"
+            testDirPattern: "/src(.*)/g"
+            testDirReplacement: "test/$1"
+        ```
+        The above configuration will place the unit tests in the `test` folder but keep the folder structure of the `src` folder.
+    - `inline`: The unit tests are placed inline within the source file. This is particularly useful for languages like Rust.
+        ```yaml
+        testPlacementStrategies:
+          - type: inline
+        ```
+- `settings.language`: The language of the repository (typescript, javascript, python, java, go, rust).
+- `settings.framework`: The testing framework of the repository (varies by language, see supported frameworks table).
 
 #### Advanced Configuration Fields
 *The following fields are optional, use them only if you understand what they are for.*
 - `env.image`: You can specify a custom image for the agent to use, for example `ghcr.io/babelcloud/sandbox-unit-tester:main`. Gru will use this image to start the sandbox. If not provided, Gru will use the default image.
 - `env.credential`: The credential for accessing the image, it can be a Github PAT or other credentials depending on the image hosting service.
+- `env.arch`: The architecture of the environment, either `amd64` or `arm64`.
 - `global.cleanup`: The commands to clean up the environment after the agent is done.
 - `pipeline.runTest.pre`: The commands to run before the tests are executed, usually execute tools to fix code format, such as `npx prettier {{testFilePath}} --write`.
 - `pipeline.runTest.post`: The commands to run after the tests are executed, usually execute tools to check code format or lint, such as `eslint_d {{testFilePath}} --fix --no-warn-ignored --max-warnings=0`.
@@ -132,7 +157,14 @@ For example:
         exclude:
           - testgru-*
     ```
-- `on.pullRequest.include`: Pull Request events with the specified conditions will trigger the agent. Conditions include the source branch name and the title of the pull request. For example:
+- `on.pullRequest.event`: Specific pull request events to trigger the agent. Available options are `open` and `merged`.
+    ```yaml
+    on:
+      pullRequest:
+        event:
+          - open
+    ```
+- `on.pullRequest.include`: Pull Request events with the specified conditions will trigger the agent. Conditions include the source branch name, target branch, and title of the pull request. For example:
     ```yaml
     on:
       pullRequest:
@@ -142,22 +174,33 @@ For example:
           title:
             - "feature/*"
     ```
-    The above configuration will trigger the agent when the source branch matches `**` AND the title of the pull request matches `feature/*`.
-    Note: 
-    1. If no `on.push` or `on.pullRequest` is specified, the default behavior is to trigger the agent by all pull request events.
-    2. If any `on.push` or `on.pullRequest` is specified, the agent will be triggered by according to the specified conditions.
-- `on.pullRequest.exclude`: Pull Request events with the specified conditions will NOT trigger the agent. Conditions include the source branch name and the title of the pull request. For example:
+    
+    The configuration now also supports more detailed source and target branch specifications:
     ```yaml
     on:
       pullRequest:
-        exclude:
-          branch:
-            - "testgru-*"
+        include:
+          sourceBranch:
+            - from: original
+              name: "feature/*"
+          targetBranch:
+            - name: main
           title:
-            - "WIP*"
+            - "feature/*"
     ```
-    The above configuration will NOT trigger the agent when the source branch matches `testgru-*` OR the title of the pull request matches `WIP*`. If not specified, the agent will be triggered by all pull request events specified in `on.pullRequest.include`.
+    The `from` field in `sourceBranch` can be:
+    - `all`: Match branches from both forked and original repositories
+    - `forked`: Match only branches from forked repositories
+    - `original`: Match only branches from the original repository
+    
+    Note: 
+    1. If no `on.push` or `on.pullRequest` is specified, the default behavior is to trigger the agent by all pull request events.
+    2. If any `on.push` or `on.pullRequest` is specified, the agent will be triggered by according to the specified conditions.
+- `on.pullRequest.exclude`: Similar to `include`, but specifies conditions under which the agent should NOT be triggered.
+- `settings.codeLengthLimit`: The maximum length of the source code or test file that Test Gru can handle. Default is 1000.
 - `settings.workingDir`: The working directory of the agent. This is useful when you want to run the tests in a specific directory such as monorepo. If not specified, the agent will use the root directory of the repository.
+- `settings.repoRoot`: Specifies a custom repository root directory.
+- `settings.gitignore`: List of patterns that Test Gru should ignore (similar to .gitignore).
 - `settings.mockIgnore`: The packages that should NOT be mocked. For example:
     ```yaml
     settings:
@@ -208,6 +251,15 @@ For example:
             - src/services/message/client.test.ts
     ```
     You can specify multiple `match` and `examples` to provide references for different parts of the codebase.
+- `settings.experimental`: Enables experimental features:
+    ```yaml
+    settings:
+      experimental:
+        skipAnalyzeExistingTest: true
+        withMockedSymbolCode: true
+    ```
+    - `skipAnalyzeExistingTest`: Skip analyzing existing tests when generating new tests.
+    - `withMockedSymbolCode`: Generate mocked code for external symbols.
     
 ### Dry Run
 It is highly recommended to do a dry run before you save the configuration file. You can do this by clicking the `Dry Run` button in the configuration editor. Make sure the dry run is successful before you save the configuration. However, if you do believe the configuration is correct, you can save it without a successful dry run.
@@ -216,13 +268,14 @@ It is highly recommended to do a dry run before you save the configuration file.
 You can have multiple configurations in one repository. For example, you can have a configuration for submodule A and another configuration for submodule B. The configurations will take effect at the same time. For example:
 
 ```yaml
-version: "0.1"
+version: "1.0"
+name: "Go Configuration"
 global:
   setup: []
 pipeline:
   runTest:
     exec:
-      - go test {{testCodeIdentifier}} -v
+      - go test {{testFilePath}} -v
 settings:
   include:
     - pkg/**
@@ -233,13 +286,14 @@ settings:
   language: go
   framework: gotest
 ---
-version: "0.1"
+version: "1.0"
+name: "Service Go Configuration"
 global:
   setup: []
 pipeline:
   runTest:
     exec:
-      - go test {{testCodeIdentifier}} -v
+      - go test {{testFilePath}} -v
 settings:
   include:
     - service/pkg/**
