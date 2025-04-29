@@ -8,6 +8,14 @@ With Gru, you can easily get over 80% coverage for your code.
 If you have any question, please connect to us:
 connect@gru.ai,or join our [slack](https://forms.office.com/pages/responsepage.aspx?id=pv-U4cZeVEmv6PWOhkVcioQxW7gnJCNAlyoGvQ7Z9OJUMENBQzZJTU5JSlIyMUxYQk1DOVhaNDVXSi4u&route=shorturl).  
 
+## Table of Contents
+- [Create Gru Account](#create-gru-account)
+- [Install Github Application](#install-github-application)
+- [Configuration - Auto Setup](#configuration-auto-setup)
+- [Configuration - Manual Setup](#configuration-manual-setup)
+- [Trigger Gru to work](#trigger-gru-to-work)
+
+
 ## Creat Gru Account
 Log in at [Gru.ai](https://gru.ai). Test Gru currently only supports use with GitHub accounts. You need a GitHub account to log in to gru.ai.
 
