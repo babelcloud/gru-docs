@@ -11,8 +11,8 @@ connect@gru.ai,or join our [slack](https://forms.office.com/pages/responsepage.a
 ## Table of Contents
 - [Create Gru Account](#create-gru-account)
 - [Install Github Application](#install-github-application)
-- [Configuration - Auto Setup](#configuration-auto-setup)
-- [Configuration - Manual Setup](#configuration-manual-setup)
+- [Configuration Auto Setup](#configuration-auto-setup)
+- [Configuration Manual Setup](#configuration-manual-setup)
 - [Trigger Gru to work](#trigger-gru-to-work)
 
 
@@ -38,7 +38,7 @@ We recommend you try Gru on your own repo so that you can better understand how 
 - [Java Sample](https://github.com/gru-agent/testgru-example-java)
 - [Go Sample](https://github.com/gru-agent/testgru-example-go)
 
-## Configuration - Auto Setup
+## Configuration Auto Setup
 It is very important to setup the configuration correctly. The purpose of the configuration is to tell Gru how to write and run tests in your repo.
 
 Please follow the steps to setup the configuration.
@@ -70,7 +70,7 @@ If everything is OK, click the "Done" button and the configuration will be saved
 
 NOTE: You MUST setup the configuration before Gru can work!
 
-## Configuration - Manual Setup
+## Configuration Manual Setup
 You can always manually edit the configuration. Go to "Settings" page of any repo, you can edit the configuration there.
 <img width="1313" alt="image" src="https://github.com/user-attachments/assets/40b9323e-a913-40f0-9042-188776b0c54a" />
 
