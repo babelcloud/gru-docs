@@ -288,9 +288,6 @@ For example:
     ```
     - `skipAnalyzeExistingTest`: Skip analyzing existing tests when generating new tests.
     - `withMockedSymbolCode`: Generate mocked code for external symbols.
-    
-### Dry Run
-It is highly recommended to do a dry run before you save the configuration file. You can do this by clicking the `Dry Run` button in the configuration editor. Make sure the dry run is successful before you save the configuration. However, if you do believe the configuration is correct, you can save it without a successful dry run.
 
 ### Multiple Configurations
 You can have multiple configurations in one repository. For example, you can have a configuration for submodule A and another configuration for submodule B. The configurations will take effect at the same time. For example:
