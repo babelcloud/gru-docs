@@ -60,18 +60,46 @@ Test Gru currently supports the following languages and frameworks:
 
 | Language | Supported Frameworks |
 |----------|---------------------|
-| TypeScript | jest, vitest |
-| JavaScript | jest, vitest |
-| Python | pytest |
-| Java | junit4, junit5, testng |
-| Go | gotest |
-| Rust | rusttest |
+| TypeScript/JavaScript | Jest, Vitest |
+| Python | Pytest |
+| Java | Junit4, Junit5 |
+| Go | Gotest |
+| Rust | Rusttest |
 
 #### Prebuilt Parameters
+Using the following project file tree as example:
+```
+my-typescript-project/
+├── package.json
+├── tsconfig.json
+├── jest.config.ts
+├── src/
+│   ├── index.ts
+│   └── utils/
+│       └── helper.ts
+├── tests/
+│   └── main.test.ts
+├── sub-project/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vitest.config.ts
+│   ├── src/
+│   │   └── lib.ts
+│   └── tests/
+│       └── lib.test.ts
+├── node_modules/
+├── sub-project/node_modules/
+├── README.md
+└── .gitignore
+```
 The following parameters are prebuilt by Gru and can be used in the configuration.
-- `{{sourceFilePath}}`: The path of the source code file, e.g. `src/utils/format.ts`.
-- `{{sourceFileName}}`: The name of the source code file, e.g. `format`.
-- `{{testFilePath}}`: The path of the test code file, e.g. `test/utils/format.test.ts`.
+- `{{sourceFilePath}}`: The path of the source code file starting from repo root, e.g. `src/utils/helper.ts`.
+- `{{sourceFilePathFromWorkingDir}}`: The path of the source code file starting from specified working dir, e.g. The working dir is `sub-project`, the value is `src/lib.ts`.
+- `{{sourceFileName}}`: The name of the source code file, e.g. The name for file `helper.ts` is `helper`.
+- `{{testFilePath}}`: The path of the test code file starting from repo root, e.g. `tests/main.test.ts`.
+- `{{testFilePathFromWorkingDir}}`: The path of the test code file starting from specified working dir, e.g. The working dir is `sub-project`, the value is `tests/lib.test.ts`.
+- `{{testCodeIdentifier}}`: Some languages can not use file path to specify a test to run, use testCodeIdentifier to specify which class/function to test, e.g. In Java, `mvn test -Dtest={{testCodeIdentifier}}` can be used to execute a class `CalculatorTest`, `mvn test -Dtest=CalculatorTest` or a method `mvn test -Dtest=CalculatorTest#testSum`.
+- `{{timestamp}}`: The number of milliseconds elapsed since January 1, 1970, 00:00:00 UTC (the Unix epoch), e.g. `1745893182058`.
 
 #### Basic Configuration Fields
 The following fields are the MUST have in any configuration.
